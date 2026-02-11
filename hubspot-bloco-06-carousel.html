@@ -1,0 +1,127 @@
+<!--
+  BLOCO 06 - CAROUSEL (SOBRE O EVENTO)
+-->
+<div class="tc-page">
+  <section class="tc-about">
+    <h2 class="tc-about__title">sobre o evento</h2>
+
+    <div class="tc-about__carousel">
+      <div class="tc-about__slides" id="tcAboutSlides">
+        <!-- Slide 1 -->
+        <div class="tc-about__slide">
+          <div class="tc-about__slide-text">
+            <h3>networking qualificado</h3>
+            <p>
+              um encontro fechado com c‑levels e fundadores de grandes marcas de moda e lifestyle, criado para promover trocas reais entre pares.
+              <br /><br />
+              aqui, você vai discutir como outras lideranças estão estruturando o crescimento do b2b, enfrentando seus gargalos e redesenhando seus modelos de distribuição na prática.
+            </p>
+          </div>
+          <div class="tc-about__slide-image">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=750&fit=crop" alt="Networking qualificado" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="tc-about__slide">
+          <div class="tc-about__slide-text">
+            <h3>conteúdo estratégico</h3>
+            <p>
+              uma agenda estratégica sobre as transformações que já estão redefinindo o b2b de moda e lifestyle: da digitalização superficial à construção de modelos orientados por inteligência, dados e previsibilidade.
+              <br /><br />
+              um conteúdo direto ao ponto, voltado para quem decide e conduz a transformação dentro das empresas.
+            </p>
+          </div>
+          <div class="tc-about__slide-image">
+            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=750&fit=crop" alt="Conteúdo estratégico" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="tc-about__slide">
+          <div class="tc-about__slide-text">
+            <h3>experiência</h3>
+            <p>
+              mais do que um evento, uma experiência de colaboração e evolução, onde marcamos o início de uma comunidade de líderes do ecossistema b2b.
+              <br />
+              o primeiro evento que traz diferentes segmentos, funções e perspectivas, unidos por uma visão comum de futuro.
+            </p>
+          </div>
+          <div class="tc-about__slide-image">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=750&fit=crop" alt="Experiência" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="tc-about__dots">
+      <button class="tc-about__dot tc-about__dot--active" data-slide="0" aria-label="Ir para slide 1"></button>
+      <button class="tc-about__dot" data-slide="1" aria-label="Ir para slide 2"></button>
+      <button class="tc-about__dot" data-slide="2" aria-label="Ir para slide 3"></button>
+    </div>
+  </section>
+</div>
+
+<!-- Carousel Script -->
+<script>
+  (function() {
+    var slides = document.getElementById('tcAboutSlides');
+    var dots = document.querySelectorAll('.tc-about__dot');
+    var current = 0;
+    var total = 3;
+    var autoplayTimer;
+
+    function goToSlide(index) {
+      current = index;
+      slides.style.transform = 'translateX(-' + (index * 100) + '%)';
+      for (var i = 0; i < dots.length; i++) {
+        if (i === index) {
+          dots[i].classList.add('tc-about__dot--active');
+        } else {
+          dots[i].classList.remove('tc-about__dot--active');
+        }
+      }
+    }
+
+    for (var i = 0; i < dots.length; i++) {
+      (function(idx) {
+        dots[idx].addEventListener('click', function() {
+          goToSlide(idx);
+          resetAutoplay();
+        });
+      })(i);
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(function() {
+        goToSlide((current + 1) % total);
+      }, 5000);
+    }
+
+    // Suporte a swipe touch no carousel
+    var startX = 0;
+    var endX = 0;
+
+    slides.addEventListener('touchstart', function(e) {
+      startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slides.addEventListener('touchend', function(e) {
+      endX = e.changedTouches[0].screenX;
+      var diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && current < total - 1) {
+          goToSlide(current + 1);
+        } else if (diff < 0 && current > 0) {
+          goToSlide(current - 1);
+        }
+        resetAutoplay();
+      }
+    }, { passive: true });
+
+    // Iniciar autoplay
+    resetAutoplay();
+  })();
+</script>
