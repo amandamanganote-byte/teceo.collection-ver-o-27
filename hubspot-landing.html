@@ -1,0 +1,1163 @@
+<!--
+  TECEO.COLLECTION | Verão 27 - Landing Page para HubSpot
+
+  Como usar no HubSpot:
+  1. Vá em Marketing > Landing Pages > Create
+  2. Escolha um template em branco (Blank)
+  3. Adicione um módulo "Custom HTML" (Rich Text ou HTML)
+  4. Cole todo este código dentro do módulo
+  5. Publique a página
+
+  Suporte: Responsivo + Modo Escuro automático
+-->
+
+<style>
+  /* ===== GOOGLE FONTS ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+  /* ===== CSS VARIABLES (TEMA CLARO) ===== */
+  :root {
+    --tc-bg: #ffffff;
+    --tc-bg-secondary: #f3f3f3;
+    --tc-text: #242424;
+    --tc-text-muted: rgba(36, 36, 36, 0.4);
+    --tc-accent: #FC6B4B;
+    --tc-dark: #242424;
+    --tc-dark-hover: #000000;
+    --tc-light: #ffffff;
+    --tc-border: #000000;
+    --tc-dot: #e5e5e5;
+    --tc-dot-active: #242424;
+    --tc-logo-text: #242424;
+    --tc-hero-line: #242424;
+    --tc-footer-bg: #242424;
+    --tc-footer-text: #ffffff;
+    --tc-footer-btn-bg: #ffffff;
+    --tc-footer-btn-text: #242424;
+    --tc-footer-btn-hover: #f0f0f0;
+    --tc-banner-bg: #242424;
+    --tc-banner-text: #ffffff;
+    --tc-btn-bg: #242424;
+    --tc-btn-text: #ffffff;
+    --tc-btn-hover: #000000;
+    --tc-save-border: #000000;
+    --tc-card-shadow: none;
+  }
+
+  /* ===== MODO ESCURO (automático pelo sistema) ===== */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --tc-bg: #121212;
+      --tc-bg-secondary: #1e1e1e;
+      --tc-text: #f0f0f0;
+      --tc-text-muted: rgba(240, 240, 240, 0.4);
+      --tc-dark: #f0f0f0;
+      --tc-dark-hover: #ffffff;
+      --tc-light: #121212;
+      --tc-border: rgba(255, 255, 255, 0.2);
+      --tc-dot: #333333;
+      --tc-dot-active: #f0f0f0;
+      --tc-logo-text: #f0f0f0;
+      --tc-hero-line: #f0f0f0;
+      --tc-footer-bg: #0a0a0a;
+      --tc-footer-text: #f0f0f0;
+      --tc-footer-btn-bg: #ffffff;
+      --tc-footer-btn-text: #121212;
+      --tc-footer-btn-hover: #e0e0e0;
+      --tc-banner-bg: #1e1e1e;
+      --tc-banner-text: #f0f0f0;
+      --tc-btn-bg: #f0f0f0;
+      --tc-btn-text: #121212;
+      --tc-btn-hover: #ffffff;
+      --tc-save-border: rgba(255, 255, 255, 0.2);
+      --tc-card-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+  }
+
+  /* ===== RESET & BASE ===== */
+  .tc-page *,
+  .tc-page *::before,
+  .tc-page *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .tc-page {
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--tc-text);
+    background: var(--tc-bg);
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .tc-page a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tc-page button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .tc-page img {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* ===== NAVBAR ===== */
+  .tc-navbar {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tc-navbar__logo {
+    width: 96px;
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+  .tc-navbar__logo:hover {
+    opacity: 0.9;
+  }
+
+  .tc-navbar__logo svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .tc-navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .tc-navbar__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--tc-text);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  .tc-navbar__link:hover {
+    opacity: 1;
+  }
+
+  .tc-navbar__btn {
+    display: inline-block;
+    background: var(--tc-btn-bg);
+    color: var(--tc-btn-text);
+    padding: 8px 24px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 400;
+    transition: background 0.3s;
+  }
+
+  .tc-navbar__btn:hover {
+    background: var(--tc-btn-hover);
+  }
+
+  /* ===== Logo SVG: cores dinâmicas ===== */
+  .tc-logo-text-fill {
+    fill: var(--tc-logo-text);
+  }
+
+  .tc-logo-accent-fill {
+    fill: var(--tc-accent);
+  }
+
+  .tc-logo-white-fill {
+    fill: var(--tc-footer-text);
+  }
+
+  /* ===== HERO ===== */
+  .tc-hero {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  .tc-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .tc-hero__title {
+    font-size: 112px;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: var(--tc-text);
+  }
+
+  .tc-hero__title .tc-bold {
+    font-weight: 400;
+  }
+
+  .tc-hero__subtitle {
+    color: var(--tc-accent);
+    font-size: 33px;
+    margin-top: 16px;
+    font-weight: 400;
+  }
+
+  .tc-hero__info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    margin-top: 64px;
+  }
+
+  .tc-hero__event-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tc-hero__event-text p {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--tc-text);
+  }
+
+  .tc-hero__event-text .tc-highlight {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--tc-accent);
+    letter-spacing: 0.1em;
+    margin: 4px 0;
+  }
+
+  .tc-hero__date-location {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tc-hero__date-location p {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--tc-text);
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
+
+  .tc-hero__line {
+    width: 37px;
+    height: 3px;
+    margin: 8px 0;
+  }
+
+  .tc-hero__date-location p:last-child {
+    margin-top: 8px;
+  }
+
+  /* Hero Images Collage */
+  .tc-hero__images {
+    display: flex;
+    gap: 16px;
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+  }
+
+  .tc-hero__images-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 50%;
+  }
+
+  .tc-hero__img-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--tc-bg-secondary);
+  }
+
+  .tc-hero__img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .tc-hero__img-wrapper:hover img {
+    transform: scale(1.05);
+  }
+
+  .tc-hero__img-wrapper--landscape {
+    aspect-ratio: 4 / 3;
+  }
+
+  .tc-hero__img-wrapper--portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* ===== BANNER ===== */
+  .tc-banner {
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 20px;
+  }
+
+  .tc-banner__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    background: var(--tc-banner-bg);
+    color: var(--tc-banner-text);
+    padding: 24px 16px;
+    border-radius: 9999px;
+    text-align: center;
+  }
+
+  .tc-banner__text {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  /* ===== SAVE THE DATE ===== */
+  .tc-save {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 24px 128px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .tc-save__image-container {
+    position: relative;
+    width: 100%;
+    max-width: 515px;
+    margin: 0 auto;
+    aspect-ratio: 515 / 634;
+  }
+
+  .tc-save__image-bg {
+    position: absolute;
+    top: 2.2%;
+    left: 0;
+    width: 97.5%;
+    height: 97.8%;
+    border: 1px solid var(--tc-save-border);
+    border-radius: 25px;
+  }
+
+  .tc-save__image-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 97.5%;
+    height: 97.8%;
+    border: 1px solid var(--tc-save-border);
+    border-radius: 19px;
+    overflow: hidden;
+    background: var(--tc-bg-secondary);
+  }
+
+  .tc-save__image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tc-save__content {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-left: 48px;
+  }
+
+  .tc-save__title {
+    font-size: 32px;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    color: var(--tc-text);
+  }
+
+  .tc-save__details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 24px;
+  }
+
+  .tc-save__row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .tc-save__label {
+    color: var(--tc-text-muted);
+    font-weight: 500;
+    text-transform: lowercase;
+  }
+
+  .tc-save__value {
+    color: var(--tc-text);
+    font-weight: 400;
+    text-transform: lowercase;
+  }
+
+  .tc-save__btn {
+    background: var(--tc-btn-bg);
+    color: var(--tc-btn-text);
+    padding: 12px 40px;
+    border-radius: 9999px;
+    font-size: 18px;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    transition: background 0.3s;
+    align-self: flex-start;
+    margin-top: 16px;
+    display: inline-block;
+  }
+
+  .tc-save__btn:hover {
+    background: var(--tc-btn-hover);
+  }
+
+  /* ===== ABOUT / CAROUSEL ===== */
+  .tc-about {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 24px 128px;
+  }
+
+  .tc-about__title {
+    font-size: 72px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--tc-text);
+    margin-bottom: 64px;
+  }
+
+  .tc-about__carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tc-about__slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .tc-about__slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+  }
+
+  .tc-about__slide-text {
+    background: var(--tc-accent);
+    border-radius: 25px;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    min-height: 500px;
+    box-shadow: var(--tc-card-shadow);
+  }
+
+  .tc-about__slide-text h3 {
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+  }
+
+  .tc-about__slide-text p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .tc-about__slide-image {
+    border-radius: 25px;
+    overflow: hidden;
+    min-height: 500px;
+    box-shadow: var(--tc-card-shadow);
+  }
+
+  .tc-about__slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Dots Navigation */
+  .tc-about__dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 32px;
+    margin-left: 16px;
+  }
+
+  .tc-about__dot {
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--tc-dot);
+    width: 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+  }
+
+  .tc-about__dot--active {
+    width: 48px;
+    background: var(--tc-dot-active);
+  }
+
+  /* ===== PRE-FOOTER ===== */
+  .tc-prefooter {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .tc-prefooter__text {
+    font-size: 60px;
+    font-weight: 300;
+    color: var(--tc-text);
+    max-width: 640px;
+    line-height: 1.1;
+  }
+
+  /* ===== FOOTER ===== */
+  .tc-footer {
+    background: var(--tc-footer-bg);
+    color: var(--tc-footer-text);
+    padding: 48px 0;
+  }
+
+  .tc-footer__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .tc-footer__left {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .tc-footer__logo {
+    width: 128px;
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+  .tc-footer__logo:hover {
+    opacity: 0.9;
+  }
+
+  .tc-footer__logo svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .tc-footer__socials {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .tc-footer__socials a {
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    color: var(--tc-footer-text);
+  }
+
+  .tc-footer__socials a:hover {
+    opacity: 0.8;
+  }
+
+  .tc-footer__socials svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tc-footer__right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .tc-footer__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--tc-footer-text);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+
+  .tc-footer__link:hover {
+    opacity: 1;
+  }
+
+  .tc-footer__btn {
+    display: inline-block;
+    background: var(--tc-footer-btn-bg);
+    color: var(--tc-footer-btn-text);
+    padding: 8px 24px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 400;
+    transition: background 0.3s;
+  }
+
+  .tc-footer__btn:hover {
+    background: var(--tc-footer-btn-hover);
+  }
+
+  /* ===== RESPONSIVO - TABLET ===== */
+  @media (max-width: 1024px) {
+    .tc-hero {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 32px 24px 48px;
+    }
+
+    .tc-hero__title {
+      font-size: 72px;
+    }
+
+    .tc-hero__subtitle {
+      font-size: 24px;
+    }
+
+    .tc-hero__images {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .tc-hero__info {
+      margin-top: 32px;
+    }
+
+    .tc-save {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 48px 24px 80px;
+    }
+
+    .tc-save__content {
+      padding-left: 0;
+    }
+
+    .tc-about__title {
+      font-size: 56px;
+    }
+
+    .tc-about__slide {
+      grid-template-columns: 1fr;
+    }
+
+    .tc-about__slide-text,
+    .tc-about__slide-image {
+      min-height: 400px;
+    }
+
+    .tc-prefooter__text {
+      font-size: 40px;
+    }
+  }
+
+  /* ===== RESPONSIVO - MOBILE ===== */
+  @media (max-width: 768px) {
+    .tc-navbar__link {
+      display: none;
+    }
+
+    .tc-hero__title {
+      font-size: 48px;
+    }
+
+    .tc-hero__subtitle {
+      font-size: 18px;
+    }
+
+    .tc-hero__info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .tc-hero__event-text p {
+      font-size: 20px;
+    }
+
+    .tc-hero__event-text .tc-highlight {
+      font-size: 28px;
+    }
+
+    .tc-hero__date-location p {
+      font-size: 22px;
+    }
+
+    .tc-hero__images {
+      max-width: 320px;
+    }
+
+    .tc-banner__text {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .tc-save__details {
+      font-size: 18px;
+    }
+
+    .tc-save__row {
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+    }
+
+    .tc-about__title {
+      font-size: 36px;
+      margin-bottom: 32px;
+    }
+
+    .tc-about__slide-text {
+      padding: 28px 24px;
+      min-height: 320px;
+    }
+
+    .tc-about__slide-text h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .tc-about__slide-text p {
+      font-size: 15px;
+    }
+
+    .tc-about__slide-image {
+      min-height: 280px;
+    }
+
+    .tc-prefooter__text {
+      font-size: 28px;
+    }
+
+    .tc-footer__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .tc-footer__left,
+    .tc-footer__right {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .tc-footer__link {
+      display: none;
+    }
+  }
+
+  /* ===== RESPONSIVO - MOBILE PEQUENO ===== */
+  @media (max-width: 480px) {
+    .tc-hero__title {
+      font-size: 36px;
+    }
+
+    .tc-hero__subtitle {
+      font-size: 16px;
+    }
+
+    .tc-hero__event-text p {
+      font-size: 18px;
+    }
+
+    .tc-hero__event-text .tc-highlight {
+      font-size: 24px;
+    }
+
+    .tc-hero__date-location p {
+      font-size: 20px;
+    }
+
+    .tc-hero__images {
+      max-width: 280px;
+    }
+
+    .tc-banner__inner {
+      padding: 16px 12px;
+      border-radius: 20px;
+    }
+
+    .tc-save__btn {
+      font-size: 16px;
+      padding: 10px 32px;
+    }
+
+    .tc-about__slide-text h3 {
+      font-size: 24px;
+    }
+
+    .tc-about__slide-text p {
+      font-size: 14px;
+    }
+
+    .tc-prefooter__text {
+      font-size: 24px;
+    }
+  }
+
+  /* ===== ACESSIBILIDADE ===== */
+  @media (prefers-reduced-motion: reduce) {
+    .tc-page *,
+    .tc-page *::before,
+    .tc-page *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  /* ===== TOUCH: desabilitar hover zoom em mobile ===== */
+  @media (hover: none) {
+    .tc-hero__img-wrapper:hover img {
+      transform: none;
+    }
+  }
+</style>
+
+<div class="tc-page">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="tc-navbar">
+    <a href="#" class="tc-navbar__logo" aria-label="Teceo - Ir para o topo">
+      <svg fill="none" viewBox="0 0 95.76 17">
+        <g clip-path="url(#tc-logo-dark-clip)">
+          <path d="M2.67614 7.17285H1.34676C0.602963 7.17285 0 7.7591 0 8.48228C0 9.20546 0.602963 9.79171 1.34676 9.79171H2.67614C3.41994 9.79171 4.0229 9.20546 4.0229 8.48228C4.0229 7.7591 3.41994 7.17285 2.67614 7.17285Z" class="tc-logo-accent-fill"/>
+          <path d="M62.0017 9.75059C62.6154 12.5069 65.1654 13.8394 67.3192 13.8394C68.6637 13.8394 69.9525 13.3719 70.9484 12.5226C71.2379 12.267 71.6108 12.1273 72.001 12.1273C72.4527 12.1273 72.8776 12.3199 73.1671 12.6556C73.7346 13.3145 73.6767 14.2764 73.0328 14.8441C71.4568 16.2341 69.4268 17.0001 67.3192 17.0001C65.6575 17.0001 64.1313 16.5788 62.7822 15.7486C61.5987 15.0199 60.5878 13.9847 59.8582 12.7558C59.0696 11.3951 58.6771 9.79452 58.7246 8.17927C58.7095 7.60031 58.8589 6.85351 58.9156 6.59219C59.2549 5.00172 60.0273 3.55093 61.1367 2.44368C61.989 1.60227 62.9594 0.971488 64.0178 0.56824C64.9511 0.213426 65.9563 0.0332031 67.0054 0.0332031C67.7292 0.0332031 68.468 0.118809 69.2022 0.287768H69.2033C70.799 0.710165 72.2963 1.63944 73.415 2.90325C74.5232 4.15467 75.2168 5.66742 75.3442 7.21733C75.3222 8.03735 74.6922 8.38766 73.9696 8.46876C73.2308 8.55098 72.4006 8.08804 72.3218 7.3908C72.2929 7.19368 72.2454 6.95263 72.2454 6.94925C71.8019 4.55454 69.5727 2.87509 67.0842 2.87509C64.5956 2.87509 62.5193 4.621 62.077 7.04838C61.8697 8.18378 61.8581 9.1063 62.0017 9.75172V9.75059Z" class="tc-logo-text-fill"/>
+          <path d="M87.2489 16.8807C82.5578 16.8807 78.7422 13.1151 78.7422 8.4868C78.7422 3.85845 82.5578 0.0917969 87.2489 0.0917969C91.9399 0.0917969 95.7555 3.85733 95.7555 8.48567C95.7555 13.114 91.9399 16.8795 87.2489 16.8795V16.8807ZM87.2489 3.18487C84.2855 3.18487 81.8746 5.56268 81.8746 8.48567C81.8746 11.4087 84.2855 13.7865 87.2489 13.7865C90.2122 13.7865 92.6232 11.4087 92.6232 8.48567C92.6232 5.56268 90.2122 3.18487 87.2489 3.18487Z" class="tc-logo-text-fill"/>
+          <path d="M83.0393 7.17285H57.8956C57.1518 7.17285 56.5488 7.7591 56.5488 8.48228C56.5488 9.20546 57.1518 9.79171 57.8956 9.79171H83.0393C83.7831 9.79171 84.386 9.20546 84.386 8.48228C84.386 7.7591 83.7831 7.17285 83.0393 7.17285Z" class="tc-logo-accent-fill"/>
+          <g>
+            <path d="M34.3197 2.87005C33.1999 1.60624 31.7038 0.676962 30.1081 0.254565H30.1069C29.3727 0.0856058 28.6328 0 27.9102 0C26.861 0 25.8559 0.180223 24.9225 0.535036C23.863 0.938285 22.8937 1.56906 22.0414 2.41048C20.7919 3.65852 19.9686 5.34473 19.7127 7.17287H10.7127V1.67945C10.7127 0.817761 10.0028 0.116018 9.12971 0.116018C8.25657 0.116018 7.54672 0.803118 7.54672 1.67945V7.17287H6.61568C5.92783 7.17287 5.31641 7.7079 5.31641 8.48286C5.31641 9.25782 5.9371 9.79286 6.64811 9.79286H7.54672V10.9598C7.54672 12.5221 8.16162 13.9898 9.27909 15.0925C10.3954 16.1941 11.8823 16.8013 13.4653 16.8013H14.6418C15.53 16.8013 16.2248 16.1142 16.2248 15.2378C16.2248 14.3615 15.5149 13.6744 14.6418 13.6744H13.4653C11.9216 13.6744 10.7127 12.4816 10.7127 10.9598V9.79286H19.7324C19.8956 10.8314 20.243 11.8294 20.7618 12.7237C21.4914 13.9526 22.5023 14.9878 23.6858 15.7166C25.0349 16.5467 26.5611 16.968 28.2228 16.968C30.3304 16.968 32.3604 16.202 33.9364 14.8121C34.5803 14.2444 34.6393 13.2824 34.0707 12.6235C33.7812 12.2878 33.3563 12.0952 32.9046 12.0952C32.5155 12.0952 32.1415 12.2349 31.852 12.4906C30.8561 13.3399 29.5673 13.8073 28.2228 13.8073C26.1025 13.8073 23.6673 12.5649 22.9389 9.79173C22.9389 9.79173 34.4899 9.79173 34.5502 9.79173C35.1986 9.79173 35.7174 9.46395 35.9282 9.14067C36.3184 8.53918 36.3196 7.85433 36.2895 7.34971C36.1586 5.72658 35.4777 4.17779 34.3197 2.86892V2.87005ZM22.9806 6.98814V6.98363C23.4658 4.56414 25.5247 2.87343 27.9889 2.87343C30.4531 2.87343 32.6545 4.60357 33.1652 6.98589C33.1652 6.98814 33.1826 7.06248 33.1976 7.17174H22.9574C22.969 7.07262 22.9794 7.00503 22.9817 6.98814H22.9806Z" class="tc-logo-text-fill"/>
+            <path d="M55.0027 10.6529C54.7179 10.2068 54.2292 9.9376 53.6942 9.93197H53.6792C53.077 9.93197 52.535 10.2699 52.2618 10.8151C51.34 12.6567 49.4895 13.8011 47.4317 13.8011C44.9802 13.8011 42.8403 12.1566 42.23 9.80131C42.12 9.37666 42.0644 8.93962 42.0644 8.50145C42.0644 8.06328 42.1211 7.62624 42.2323 7.20159C42.8472 4.84631 44.9907 3.19952 47.4445 3.19952C49.493 3.19952 51.3377 4.3383 52.2583 6.17094C52.5304 6.71274 53.0724 7.04953 53.671 7.04953H53.6907C54.2257 7.04277 54.7156 6.77131 54.9993 6.32413C55.2911 5.86456 55.32 5.30024 55.078 4.81251C54.3786 3.40678 53.3155 2.22744 52.0047 1.40292C50.6579 0.55475 49.0819 0.106445 47.4433 0.106445C45.4018 0.106445 43.4239 0.837474 41.8756 2.16324C40.3424 3.47549 39.3304 5.27884 39.027 7.24102C38.9621 7.65665 38.9297 8.0813 38.9297 8.5037C38.9297 8.9261 38.961 9.35075 39.0246 9.76639C39.3246 11.7274 40.3332 13.5297 41.8641 14.8408C43.41 16.1654 45.3855 16.8942 47.4259 16.8953H47.4283C50.7019 16.8953 53.6352 15.0818 55.0815 12.1645C55.3235 11.6767 55.2934 11.1113 55.0004 10.6529H55.0027Z" class="tc-logo-text-fill"/>
+          </g>
+        </g>
+        <defs>
+          <clipPath id="tc-logo-dark-clip">
+            <rect fill="white" height="17.0001" width="95.7555"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </a>
+
+    <div class="tc-navbar__actions">
+      <a href="#tc-save-the-date" class="tc-navbar__link">local</a>
+      <a href="#" class="tc-navbar__btn">confirmar presenca</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="tc-hero">
+    <div class="tc-hero__content">
+      <div>
+        <h1 class="tc-hero__title">
+          teceo.co<span class="tc-bold">llection</span>
+        </h1>
+        <p class="tc-hero__subtitle">1a edicao_verao 27</p>
+      </div>
+
+      <div class="tc-hero__info">
+        <div class="tc-hero__event-text">
+          <p>um evento</p>
+          <p class="tc-highlight">exclusivo</p>
+          <p>para quem move o B2B</p>
+        </div>
+
+        <div class="tc-hero__date-location">
+          <p>11/03</p>
+          <svg class="tc-hero__line" fill="none" viewBox="0 0 38 4">
+            <line stroke="currentColor" stroke-width="3" x1="3" x2="38" y1="2" y2="2"/>
+          </svg>
+          <p>Sao Paulo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Collage -->
+    <div class="tc-hero__images">
+      <div class="tc-hero__images-col">
+        <div class="tc-hero__img-wrapper tc-hero__img-wrapper--landscape">
+          <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=400&h=300&fit=crop" alt="Laranjas na mesa" loading="lazy" />
+        </div>
+        <div class="tc-hero__img-wrapper tc-hero__img-wrapper--portrait">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&h=530&fit=crop" alt="Design de interiores" loading="lazy" />
+        </div>
+      </div>
+      <div class="tc-hero__images-col">
+        <div class="tc-hero__img-wrapper tc-hero__img-wrapper--portrait">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=530&fit=crop" alt="Ao ar livre" loading="lazy" />
+        </div>
+        <div class="tc-hero__img-wrapper tc-hero__img-wrapper--landscape">
+          <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=400&h=300&fit=crop" alt="Tenis" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BANNER ===== -->
+  <div class="tc-banner">
+    <div class="tc-banner__inner">
+      <p class="tc-banner__text">venha construir o futuro do b2b de moda e lifestyle</p>
+    </div>
+  </div>
+
+  <!-- ===== SAVE THE DATE ===== -->
+  <section class="tc-save" id="tc-save-the-date">
+    <div class="tc-save__image-container">
+      <div class="tc-save__image-bg"></div>
+      <div class="tc-save__image-frame">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=740&fit=crop" alt="Leila Restaurante" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="tc-save__content">
+      <h2 class="tc-save__title">save the date</h2>
+
+      <div class="tc-save__details">
+        <div class="tc-save__row">
+          <span class="tc-save__label">dia</span>
+          <span class="tc-save__value">11 de marco de 2026</span>
+        </div>
+        <div class="tc-save__row">
+          <span class="tc-save__label">exclusivo</span>
+          <span class="tc-save__value">para convidados selecionados</span>
+        </div>
+        <div class="tc-save__row">
+          <span class="tc-save__label">local</span>
+          <span class="tc-save__value">leila restaurante</span>
+        </div>
+        <div class="tc-save__row">
+          <span class="tc-save__label">horario</span>
+          <span class="tc-save__value">19h as 23h</span>
+        </div>
+      </div>
+
+      <button class="tc-save__btn" onclick="window.open('#','_blank')">como chegar</button>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT / CAROUSEL ===== -->
+  <section class="tc-about">
+    <h2 class="tc-about__title">sobre o evento</h2>
+
+    <div class="tc-about__carousel">
+      <div class="tc-about__slides" id="tcAboutSlides">
+        <!-- Slide 1 -->
+        <div class="tc-about__slide">
+          <div class="tc-about__slide-text">
+            <h3>network qualificado</h3>
+            <p>
+              um encontro fechado com c-levels e fundadores de grandes marcas de moda e lifestyle, criado para promover trocas reais entre pares.
+              <br /><br />
+              aqui, voce vai discutir como outras liderancas estao estruturando o crescimento do b2b, enfrentando seus gargalos e redesenhando seus modelos de distribuicao na pratica.
+            </p>
+          </div>
+          <div class="tc-about__slide-image">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=750&fit=crop" alt="Network qualificado" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="tc-about__slide">
+          <div class="tc-about__slide-text">
+            <h3>conteudo estrategico</h3>
+            <p>
+              uma agenda estrategica sobre as transformacoes que ja estao redefinindo o b2b de moda e lifestyle: da digitalizacao superficial a construcao de modelos orientados por inteligencia, dados e previsibilidade.
+              <br /><br />
+              um conteudo direto ao ponto, voltado para quem decide e conduz a transformacao dentro das empresas.
+            </p>
+          </div>
+          <div class="tc-about__slide-image">
+            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=750&fit=crop" alt="Conteudo estrategico" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="tc-about__slide">
+          <div class="tc-about__slide-text">
+            <h3>experiencia</h3>
+            <p>
+              mais do que um evento, uma experiencia de colaboracao e evolucao, onde marcamos o inicio de uma comunidade de lideres do ecossistema b2b.
+              <br />
+              o primeiro evento que tras diferentes segmentos, funcoes e perspectivas, unidos por uma visao comum de futuro.
+            </p>
+          </div>
+          <div class="tc-about__slide-image">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&h=750&fit=crop" alt="Experiencia" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="tc-about__dots">
+      <button class="tc-about__dot tc-about__dot--active" data-slide="0" aria-label="Ir para slide 1"></button>
+      <button class="tc-about__dot" data-slide="1" aria-label="Ir para slide 2"></button>
+      <button class="tc-about__dot" data-slide="2" aria-label="Ir para slide 3"></button>
+    </div>
+  </section>
+
+  <!-- ===== PRE-FOOTER ===== -->
+  <div class="tc-prefooter">
+    <h2 class="tc-prefooter__text">
+      nenhum bom negocio<br />
+      e feito sozinho.
+    </h2>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="tc-footer">
+    <div class="tc-footer__inner">
+      <div class="tc-footer__left">
+        <a href="#" class="tc-footer__logo" aria-label="Teceo">
+          <svg fill="none" viewBox="0 0 129 22.9">
+            <g clip-path="url(#tc-logo-white-clip)">
+              <path d="M3.60521 9.66278H1.81431C0.812292 9.66278 0 10.4526 0 11.4268C0 12.401 0.812292 13.1908 1.81431 13.1908H3.60521C4.60722 13.1908 5.41952 12.401 5.41952 11.4268C5.41952 10.4526 4.60722 9.66278 3.60521 9.66278Z" class="tc-logo-accent-fill"/>
+              <path d="M83.5255 13.1354C84.3523 16.8485 87.7875 18.6437 90.6891 18.6437C92.5003 18.6437 94.2366 18.0139 95.5782 16.8698C95.9682 16.5253 96.4706 16.3372 96.9963 16.3372C97.6047 16.3372 98.1772 16.5967 98.5672 17.0489C99.3316 17.9366 99.2537 19.2324 98.3863 19.9972C96.2631 21.8698 93.5284 22.9016 90.6891 22.9016C88.4505 22.9016 86.3944 22.3341 84.577 21.2157C82.9826 20.234 81.6207 18.8394 80.6379 17.1839C79.5755 15.3508 79.0467 13.1946 79.1107 11.0185C79.0904 10.2386 79.2916 9.23252 79.3681 8.88048C79.8251 6.73786 80.8657 4.78339 82.3602 3.29175C83.5083 2.15823 84.8156 1.30846 86.2415 0.765217C87.4989 0.287224 88.853 0.0444336 90.2664 0.0444336C91.2414 0.0444336 92.2367 0.159759 93.2257 0.387375H93.2273C95.377 0.956414 97.3941 2.2083 98.9011 3.91087C100.394 5.59674 101.328 7.63466 101.5 9.72266C101.47 10.8274 100.622 11.2993 99.6483 11.4085C98.653 11.5193 97.5345 10.8956 97.4284 9.95634C97.3894 9.69079 97.3255 9.36606 97.3255 9.36151C96.728 6.13543 93.7249 3.87293 90.3724 3.87293C87.02 3.87293 84.2228 6.22496 83.6269 9.49504C83.3477 11.0246 83.3321 12.2674 83.5255 13.1369V13.1354Z" class="tc-logo-white-fill"/>
+              <path d="M117.54 22.7408C111.22 22.7408 106.08 17.668 106.08 11.4329C106.08 5.19773 111.22 0.123413 117.54 0.123413C123.86 0.123413 129 5.19621 129 11.4314C129 17.6665 123.86 22.7393 117.54 22.7393V22.7408ZM117.54 4.2903C113.548 4.2903 110.3 7.49361 110.3 11.4314C110.3 15.3691 113.548 18.5724 117.54 18.5724C121.532 18.5724 124.78 15.3691 124.78 11.4314C124.78 7.49361 121.532 4.2903 117.54 4.2903Z" class="tc-logo-white-fill"/>
+              <path d="M111.867 9.66284H77.994C76.992 9.66284 76.1797 10.4526 76.1797 11.4269C76.1797 12.4011 76.992 13.1909 77.994 13.1909H111.867C112.869 13.1909 113.681 12.4011 113.681 11.4269C113.681 10.4526 112.869 9.66284 111.867 9.66284Z" class="tc-logo-accent-fill"/>
+              <g>
+                <path d="M46.2364 3.86643C44.7278 2.16387 42.7123 0.911981 40.5626 0.342941H40.561C39.5719 0.115325 38.5751 0 37.6016 0C36.1883 0 34.8342 0.24279 33.5768 0.720783C32.1494 1.26403 30.8436 2.11379 29.6954 3.24732C28.0122 4.92864 26.903 7.20025 26.5582 9.66305H14.4338V2.2625C14.4338 1.10166 13.4775 0.156296 12.3012 0.156296C11.125 0.156296 10.1687 1.08193 10.1687 2.2625V9.66305H8.91441C7.98775 9.66305 7.16406 10.3838 7.16406 11.4278C7.16406 12.4718 8.00023 13.1926 8.95809 13.1926H10.1687V14.7647C10.1687 16.8694 10.997 18.8466 12.5025 20.3322C14.0063 21.8162 16.0094 22.6341 18.1419 22.6341H19.7269C20.9234 22.6341 21.8595 21.7085 21.8595 20.5279C21.8595 19.3473 20.9032 18.4217 19.7269 18.4217H18.1419C16.0624 18.4217 14.4338 16.8147 14.4338 14.7647V13.1926H26.5848C26.8047 14.5917 27.2727 15.9361 27.9716 17.141C28.9544 18.7965 30.3163 20.191 31.9107 21.1728C33.7281 22.2912 35.7842 22.8587 38.0228 22.8587C40.8621 22.8587 43.5968 21.8268 45.72 19.9543C46.5874 19.1895 46.6669 17.8936 45.9009 17.0059C45.5109 16.5537 44.9384 16.2943 44.33 16.2943C43.8058 16.2943 43.302 16.4824 42.9119 16.8269C41.5703 17.971 39.834 18.6008 38.0228 18.6008C35.1664 18.6008 31.8857 16.927 30.9045 13.1911C30.9045 13.1911 46.4657 13.1911 46.5468 13.1911C47.4204 13.1911 48.1193 12.7495 48.4032 12.314C48.929 11.5037 48.9305 10.5811 48.8899 9.90129C48.7137 7.71466 47.7964 5.62818 46.2364 3.86492V3.86643ZM30.9606 9.41419V9.40812C31.6143 6.14866 34.388 3.87099 37.7077 3.87099C41.0274 3.87099 43.993 6.20177 44.681 9.41115C44.681 9.41419 44.7044 9.51434 44.7247 9.66153H30.9294C30.945 9.528 30.9591 9.43695 30.9622 9.41419H30.9606Z" class="tc-logo-white-fill"/>
+                <path d="M74.0984 14.3511C73.7146 13.7502 73.0563 13.3875 72.3356 13.3799H72.3153C71.5041 13.3799 70.774 13.8352 70.4058 14.5696C69.1641 17.0506 66.6711 18.5923 63.899 18.5923C60.5964 18.5923 57.7135 16.3769 56.8914 13.2039C56.7432 12.6318 56.6683 12.0431 56.6683 11.4528C56.6683 10.8625 56.7447 10.2737 56.8945 9.70166C57.7229 6.52869 60.6105 4.3102 63.9161 4.3102C66.6758 4.3102 69.1609 5.84433 70.4012 8.3132C70.7678 9.04309 71.4979 9.4968 72.3044 9.4968H72.3309C73.0516 9.4877 73.7115 9.12199 74.0937 8.51957C74.4869 7.90046 74.5259 7.14022 74.1998 6.48317C73.2576 4.58941 71.8255 3.00065 70.0595 1.88988C68.2452 0.747251 66.122 0.143311 63.9146 0.143311C61.1643 0.143311 58.4998 1.12813 56.414 2.91415C54.3485 4.68197 52.9851 7.11139 52.5764 9.75477C52.489 10.3147 52.4453 10.8868 52.4453 11.4558C52.4453 12.0249 52.4874 12.5969 52.5732 13.1569C52.9773 15.7987 54.3361 18.2266 56.3984 19.9929C58.481 21.7774 61.1424 22.7592 63.8912 22.7607H63.8943C68.3045 22.7607 72.256 20.3177 74.2045 16.3875C74.5305 15.7304 74.49 14.9687 74.0953 14.3511H74.0984Z" class="tc-logo-white-fill"/>
+              </g>
+            </g>
+            <defs>
+              <clipPath id="tc-logo-white-clip">
+                <rect fill="white" height="22.9016" width="128.998"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+
+        <div class="tc-footer__socials">
+          <a href="https://www.instagram.com/teceo.co/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/teceo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCUt4zYGDs1zNDNa2mqHvY1Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="tc-footer__right">
+        <a href="#tc-save-the-date" class="tc-footer__link">local</a>
+        <a href="#" class="tc-footer__btn">confirmar presenca</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ===== CAROUSEL SCRIPT ===== -->
+<script>
+  (function() {
+    var slides = document.getElementById('tcAboutSlides');
+    var dots = document.querySelectorAll('.tc-about__dot');
+    var current = 0;
+    var total = 3;
+    var autoplayTimer;
+
+    function goToSlide(index) {
+      current = index;
+      slides.style.transform = 'translateX(-' + (index * 100) + '%)';
+      for (var i = 0; i < dots.length; i++) {
+        if (i === index) {
+          dots[i].classList.add('tc-about__dot--active');
+        } else {
+          dots[i].classList.remove('tc-about__dot--active');
+        }
+      }
+    }
+
+    for (var i = 0; i < dots.length; i++) {
+      (function(idx) {
+        dots[idx].addEventListener('click', function() {
+          goToSlide(idx);
+          resetAutoplay();
+        });
+      })(i);
+    }
+
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(function() {
+        goToSlide((current + 1) % total);
+      }, 5000);
+    }
+
+    // Suporte a swipe touch no carousel
+    var startX = 0;
+    var endX = 0;
+
+    slides.addEventListener('touchstart', function(e) {
+      startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slides.addEventListener('touchend', function(e) {
+      endX = e.changedTouches[0].screenX;
+      var diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && current < total - 1) {
+          goToSlide(current + 1);
+        } else if (diff < 0 && current > 0) {
+          goToSlide(current - 1);
+        }
+        resetAutoplay();
+      }
+    }, { passive: true });
+
+    // Iniciar autoplay
+    resetAutoplay();
+  })();
+</script>
